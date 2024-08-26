@@ -11,6 +11,8 @@ class VideoModel {
   final String username;
   final String thumbnailUrl;
   final String pictureUrl;
+  final String title;
+  final int shareCount;
 
   VideoModel({
     required this.id,
@@ -22,6 +24,9 @@ class VideoModel {
     required this.username,
     required this.thumbnailUrl,
     required this.pictureUrl,
+
+    required this.title,
+    required this.shareCount,
   });
 
   factory VideoModel.fromJson(Map<String, dynamic> json) {
@@ -35,20 +40,24 @@ class VideoModel {
       username: json['username'],
       thumbnailUrl: json['thumbnail_url'],
       pictureUrl: json['picture_url'],
+      title: json['title'],
+      shareCount: json['share_count'],
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      "id":id,
-      "slug":slug,
-      "upvote_count":upvoteCount,
-      "comment_count":commentCount,
-      "child_video_count":childCountVideo,
-      "video_link":videoLink,
-      "username":username,
-      "thumbnail_url":thumbnailUrl,
-      "picture_url":pictureUrl,
+      "id": id,
+      "slug": slug,
+      "upvote_count": upvoteCount,
+      "comment_count": commentCount,
+      "child_video_count": childCountVideo,
+      "video_link": videoLink,
+      "username": username,
+      "thumbnail_url": thumbnailUrl,
+      "picture_url": pictureUrl,
+      "share_count":shareCount,
+      "title":title,
     };
   }
 }

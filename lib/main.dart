@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
       ChangeNotifierProvider(create: (context)=>VideoFeedProvider()),
     ],child:MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
