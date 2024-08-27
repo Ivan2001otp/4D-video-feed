@@ -1,7 +1,7 @@
 # Video Feed 4D
 This is a Flutter project that demonstrates 4D video feed .
 
-## Watch demo here
+## Click on thumbnail to watch demo
 [![Watch demo on YouTube](https://img.youtube.com/vi/cp607eKxb28/0.jpg)](https://www.youtube.com/watch?v=cp607eKxb28)
 
 ## Approach & Design details
