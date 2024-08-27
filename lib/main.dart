@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:video_feed_4d/features/videoFeed4D/data/provider/CommentFeedProvider.dart';
 import 'package:video_feed_4d/features/videoFeed4D/data/provider/VideoFeedProvider.dart';
 import 'features/videoFeed4D/presentation/view/HomePage.dart';
 
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(providers: [
       ChangeNotifierProvider(create: (context)=>VideoFeedProvider()),
+      ChangeNotifierProvider(create: (context)=>CommentFeedProvider()),
     ],child:MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
