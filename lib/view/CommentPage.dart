@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:video_feed_4d/features/videoFeed4D/data/provider/CommentFeedProvider.dart';
-import 'package:video_feed_4d/features/videoFeed4D/presentation/pages/LoadPage.dart';
+import 'package:video_feed_4d/pages/LoadPage.dart';
 import 'package:video_player/video_player.dart';
 
+import '../provider/CommentFeedProvider.dart';
 import '../widget/CommentVideoPage.dart';
 
 class CommentPage extends StatefulWidget {

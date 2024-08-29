@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:video_feed_4d/features/videoFeed4D/model/CommentModel.dart';
-import '../../../../utils/constants.dart';
-import '../../model/VideoModel.dart';
+import 'package:video_feed_4d/model/CommentModel.dart';
+import '../utils/constants.dart';
+import '../model/VideoModel.dart';
 
 class VideoFeedService {
   Future<List<VideoModel>> fetchVideoFeeds() async {

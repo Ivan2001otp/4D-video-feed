@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:video_feed_4d/features/videoFeed4D/data/provider/CommentFeedProvider.dart';
-import 'package:video_feed_4d/features/videoFeed4D/data/provider/VideoFeedProvider.dart';
-import 'package:video_feed_4d/features/videoFeed4D/presentation/widget/CustomVideoWidget.dart';
+import 'package:video_feed_4d/provider/VideoFeedProvider.dart';
+import 'package:video_feed_4d/widget/CustomVideoWidget.dart';
 
 import '../pages/LoadPage.dart';
 

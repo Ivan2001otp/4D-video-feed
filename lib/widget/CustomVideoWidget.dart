@@ -2,14 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:video_feed_4d/features/videoFeed4D/model/VideoModel.dart';
-import 'package:video_feed_4d/features/videoFeed4D/presentation/pages/LoadPage.dart';
-import 'package:video_feed_4d/features/videoFeed4D/presentation/view/CommentPage.dart';
-import 'package:video_feed_4d/features/videoFeed4D/presentation/widget/MiniWidget.dart';
+import 'package:video_feed_4d/model/VideoModel.dart';
+import 'package:video_feed_4d/pages/LoadPage.dart';
+import 'package:video_feed_4d/view/CommentPage.dart';
+import 'package:video_feed_4d/widget/MiniWidget.dart';
 import 'package:video_feed_4d/utils/SlideRightRoute.dart';
 import 'package:video_player/video_player.dart';
 
-import '../../data/provider/CommentFeedProvider.dart';
+import '../provider/CommentFeedProvider.dart';
 
 class CustomVideoWidget extends StatefulWidget {
   final VideoModel videoModel;

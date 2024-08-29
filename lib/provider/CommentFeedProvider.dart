@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:video_feed_4d/features/videoFeed4D/model/CommentModel.dart';
+import 'package:video_feed_4d/model/CommentModel.dart';
 
 import '../service/VideoFeedService.dart';
 
