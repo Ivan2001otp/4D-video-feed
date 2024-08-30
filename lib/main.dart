@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:video_feed_4d/provider/CommentFeedProvider.dart';
 import 'package:video_feed_4d/provider/VideoFeedProvider.dart';
+import 'package:video_feed_4d/provider/VideoIndexProvider.dart';
 import 'view/HomePage.dart';
 
 void main() {
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(providers: [
       ChangeNotifierProvider(create: (context)=>VideoFeedProvider()),
       ChangeNotifierProvider(create: (context)=>CommentFeedProvider()),
+      ChangeNotifierProvider(create: (context)=>VideoIndexProvider()),
     ],child:MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,

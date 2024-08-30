@@ -88,7 +88,7 @@ class _CustomVideoWidgetState extends State<CustomVideoWidget> {
             //pull up the comment videos
 
             _videoPlayerController.pause();
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            ScaffoldMessenger.of(context).showSnackBar(  const SnackBar(
               content: Text(
                 'Display comments...',
                 style: TextStyle(color: Colors.white),
@@ -111,7 +111,7 @@ class _CustomVideoWidgetState extends State<CustomVideoWidget> {
                 _videoPlayerController.play();
               }
             } else {
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              ScaffoldMessenger.of(context).showSnackBar( const SnackBar(
                 content: Text(
                   'No Comments',
                   style: TextStyle(color: Colors.white),
@@ -211,6 +211,7 @@ class _CustomVideoWidgetState extends State<CustomVideoWidget> {
               : SizedBox(
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height,
+                 
                   child: Stack(
                     children: [
                       Positioned(
