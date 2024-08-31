@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:page_view_dot_indicator/page_view_dot_indicator.dart';
 
 import 'package:video_feed_4d/provider/VideoFeedProvider.dart';
 import 'package:video_feed_4d/provider/VideoIndexProvider.dart';
@@ -8,6 +7,8 @@ import 'package:video_feed_4d/widget/CustomVideoWidget.dart';
 import '../pages/LoadPage.dart';
 
 import 'dart:math';
+
+import '../widget/PageViewDotIndicator.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
@@ -63,39 +64,39 @@ class _HomePageState extends State<HomePage> {
                         debugPrint(
                             "babu On index changed ->${indexProvider.currentIndex}");
 
-              //Eg: Value gives => 1 ,Value-1 gives index..
-                        if(value%3==0){
+                        //Eg: Value gives => 1 ,Value-1 gives index..
                         
-                        }
                         indexProvider.setNotifierValue(value);
-                        indexProvider.set(value-1);
+                        indexProvider.set(value - 1);
                       },
                       itemBuilder: (context, index) {
                         final reelVideo = value.videoFeeds[index];
-                        
 
                         return CustomVideoWidget(videoModel: reelVideo);
                       }),
                   Positioned(
-                    right: 20,
-                    top: 60,
+                    right: 0,
+                    top: 90,
                     child: Padding(
-                      padding: const EdgeInsets.only(top: 60, right: 20),
+                      padding: const EdgeInsets.only(top: 60, right: 2),
                       child: Transform.rotate(
                         angle: pi / 2,
                         alignment: Alignment.topRight,
-                        child:
-                         ValueListenableBuilder(
+                        child: ValueListenableBuilder(
                           valueListenable: indexProvider.videoIndexNotifier,
                           builder: (context, notifiedValue, child) {
                             debugPrint("The value listenable : $notifiedValue");
+                            debugPrint(
+                                "hasChildren : ${value.videoFeeds[notifiedValue].childCountVideo != 0}");
+
                             return SizedBox(
                               width: 51,
                               height: 51,
                               child: PageViewDotIndicator(
+                                hasChildren: value.videoFeeds[notifiedValue]
+                                     .childCountVideo > 0,
                                 currentItem: notifiedValue,
-                                count:value.videoFeeds.length
-                                ,
+                                count: value.videoFeeds.length,
                                 alignment: Alignment.centerRight,
                                 unselectedColor: Colors.grey,
                                 selectedColor:
@@ -107,7 +108,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                             );
                           },
-                                                 ),
+                        ),
                       ),
                     ),
                   ),

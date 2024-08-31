@@ -88,14 +88,14 @@ class _CustomVideoWidgetState extends State<CustomVideoWidget> {
             //pull up the comment videos
 
             _videoPlayerController.pause();
-            ScaffoldMessenger.of(context).showSnackBar(  const SnackBar(
-              content: Text(
-                'Display comments...',
-                style: TextStyle(color: Colors.white),
-              ),
-              duration: Duration(seconds: 2),
-              backgroundColor: Colors.orange,
-            ));
+            // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            //   content: Text(
+            //     'Display comments...',
+            //     style: TextStyle(color: Colors.white),
+            //   ),
+            //   duration: Duration(seconds: 2),
+            //   backgroundColor: Colors.orange,
+            // ));
 
             if (widget.videoModel.childCountVideo > 0) {
               if (details.delta.dx < 0) {
@@ -105,113 +105,105 @@ class _CustomVideoWidgetState extends State<CustomVideoWidget> {
                       id: widget.videoModel.id,
                       title: widget.videoModel.title,
                       thumbnail: widget.videoModel.thumbnailUrl,
+                      totalCommentCount: widget.videoModel.childCountVideo,
                     ),
                   ),
                 );
                 _videoPlayerController.play();
               }
-            } else {
-              ScaffoldMessenger.of(context).showSnackBar( const SnackBar(
-                content: Text(
-                  'No Comments',
-                  style: TextStyle(color: Colors.white),
-                ),
-                duration: Duration(seconds: 2),
-                backgroundColor: Colors.orange,
-              ));
-            }
+            } 
+
+            return;
           },
           child: isReady
-              ?  SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height,
-                    child: Stack(
-                      children: [
-                        VideoPlayer(_videoPlayerController),
-                        Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                        widget.videoModel.title,
-                                        style: const TextStyle(
-                                            overflow: TextOverflow.fade,
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ]),
-                        ),
-                        Positioned(
-                          right: 8,
-                          bottom: 100,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.end,
+              ? SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height,
+                  child: Stack(
+                    children: [
+                      VideoPlayer(_videoPlayerController),
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              ReelMiniWidget(
-                                  widgetName:
-                                      widget.videoModel.upvoteCount.toString(),
-                                  icon: Icons.favorite_rounded),
-                              ReelMiniWidget(
-                                  widgetName:
-                                      widget.videoModel.commentCount.toString(),
-                                  icon: Icons.chat_bubble_outline),
-                              ReelMiniWidget(
-                                  widgetName:
-                                      widget.videoModel.shareCount.toString(),
-                                  icon: Icons.share),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      widget.videoModel.title,
+                                      style: const TextStyle(
+                                          overflow: TextOverflow.fade,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ]),
+                      ),
+                      Positioned(
+                        right: 8,
+                        bottom: 100,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            ReelMiniWidget(
+                                widgetName:
+                                    widget.videoModel.upvoteCount.toString(),
+                                icon: Icons.favorite_rounded),
+                            ReelMiniWidget(
+                                widgetName:
+                                    widget.videoModel.commentCount.toString(),
+                                icon: Icons.chat_bubble_outline),
+                            ReelMiniWidget(
+                                widgetName:
+                                    widget.videoModel.shareCount.toString(),
+                                icon: Icons.share),
+                          ],
+                        ),
+                      ),
+                      Positioned(
+                        bottom: 80,
+                        left: 6,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 4, vertical: 4),
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(30),
+                                    child: Image.network(
+                                      widget.videoModel.pictureUrl,
+                                      fit: BoxFit.contain,
+                                      width: 40,
+                                      height: 40,
+                                    ),
+                                  ),
+                                  SizedBox(width: 10),
+                                  Text(
+                                    widget.videoModel.username,
+                                    style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w800),
+                                  )
+                                ],
+                              ),
                             ],
                           ),
                         ),
-                        Positioned(
-                          bottom: 80,
-                          left: 6,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 4, vertical: 4),
-                            child: Column(
-                              children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.circular(30),
-                                      child: Image.network(
-                                        widget.videoModel.pictureUrl,
-                                        fit: BoxFit.contain,
-                                        width: 40,
-                                        height: 40,
-                                      ),
-                                    ),
-                                    SizedBox(width: 10),
-                                    Text(
-                                      widget.videoModel.username,
-                                      style: const TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w800),
-                                    )
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                
+                      ),
+                    ],
+                  ),
+                )
               : SizedBox(
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height,
-                 
                   child: Stack(
                     children: [
                       Positioned(
