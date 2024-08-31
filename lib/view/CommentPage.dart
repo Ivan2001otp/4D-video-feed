@@ -66,7 +66,7 @@ class _CommentPageState extends State<CommentPage> {
                                 ),
                               ),
                               Expanded(
-                                flex: 5,
+                                flex: 4,
                                 child: Align(
                                   alignment: Alignment.bottomLeft,
                                   child: Padding(
