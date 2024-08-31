@@ -130,7 +130,7 @@ class _CommentPageState extends State<CommentPage> {
                   ),
                   Positioned(
                     right: 0,
-                    top: 90,
+                    top: 20,
                     child: Padding(
                       padding: const EdgeInsets.only(top: 60, right: 2),
                       child: Transform.rotate(
