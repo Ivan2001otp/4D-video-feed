@@ -35,6 +35,7 @@ class PageViewDotIndicator extends StatefulWidget {
     this.borderRadius,
     this.onItemClicked,
     this.hasChildren = false,
+    this.isCommentPage = false,
   })  : assert(
           currentItem >= 0 && currentItem < count,
           'Current item must be within the range of items. Make sure you are using 0-based indexing',
@@ -45,6 +46,7 @@ class PageViewDotIndicator extends StatefulWidget {
         ),
         super(key: key);
 
+  final bool isCommentPage;
   final bool hasChildren;
 
   /// The index of the currentItem. It is a 0-based index and cannot be
@@ -156,79 +158,139 @@ class _PageViewDotIndicatorState extends State<PageViewDotIndicator> {
         width: MediaQuery.of(context).size.width,
         alignment: widget.alignment,
         height: widget.size.height,
-        child: ListView.builder(
-          padding: widget.padding,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: widget.count,
-          controller: _scrollController,
-          shrinkWrap: !_needsScrolling(),
-          scrollDirection: Axis.horizontal,
-          clipBehavior: Clip.antiAlias,
-          itemBuilder: (context, index) {
-            return GestureDetector(
-              onTap: () => widget.onItemClicked?.call(index),
-              child:widget.hasChildren ?
-                Transform.rotate(
-                  angle: pi,
-                  child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      AnimatedContainer(
-                        margin: widget.margin,
-                        duration: widget.duration,
-                        decoration: BoxDecoration(
-                          borderRadius: widget.borderRadius,
-                          shape: widget.boxShape,
-                          color: index == widget.currentItem
-                              ? widget.selectedColor
-                              : widget.unselectedColor,
-                        ),
-                        width: index == widget.currentItem
-                            ? widget.size.width
-                            : widget.unselectedSize.width,
-                        height: index == widget.currentItem
-                            ? widget.size.height
-                            : widget.unselectedSize.height,
+        child: widget.isCommentPage == false
+            ? ListView.builder(
+                padding: widget.padding,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: widget.count,
+                controller: _scrollController,
+                shrinkWrap: !_needsScrolling(),
+                scrollDirection: Axis.horizontal,
+                clipBehavior: Clip.antiAlias,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () => widget.onItemClicked?.call(index),
+                    child: widget.hasChildren
+                        ? Transform.rotate(
+                            angle: pi,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                AnimatedContainer(
+                                  margin: widget.margin,
+                                  duration: widget.duration,
+                                  decoration: BoxDecoration(
+                                    borderRadius: widget.borderRadius,
+                                    shape: widget.boxShape,
+                                    color: index == widget.currentItem
+                                        ? widget.selectedColor
+                                        : widget.unselectedColor,
+                                  ),
+                                  width: index == widget.currentItem
+                                      ? widget.size.width
+                                      : widget.unselectedSize.width,
+                                  height: index == widget.currentItem
+                                      ? widget.size.height
+                                      : widget.unselectedSize.height,
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                AnimatedContainer(
+                                  margin: widget.margin,
+                                  duration: widget.duration,
+                                  decoration: BoxDecoration(
+                                    borderRadius: widget.borderRadius,
+                                    shape: widget.boxShape,
+                                    color: index == widget.currentItem
+                                        ? widget.unselectedColor
+                                        : Colors.transparent,
+                                  ),
+                                  width: widget.unselectedSize.width,
+                                  height: widget.unselectedSize.height,
+                                ),
+                              ],
+                            ),
+                          )
+                        : AnimatedContainer(
+                            margin: widget.margin,
+                            duration: widget.duration,
+                            decoration: BoxDecoration(
+                              borderRadius: widget.borderRadius,
+                              shape: widget.boxShape,
+                              color: index == widget.currentItem
+                                  ? widget.selectedColor
+                                  : widget.unselectedColor,
+                            ),
+                            width: index == widget.currentItem
+                                ? widget.size.width
+                                : widget.unselectedSize.width,
+                            height: index == widget.currentItem
+                                ? widget.size.height
+                                : widget.unselectedSize.height,
+                          ),
+                  );
+                },
+              )
+            : ListView.builder(
+                itemCount: widget.count,
+                padding: widget.padding,
+                physics: const NeverScrollableScrollPhysics(),
+                controller: _scrollController,
+                shrinkWrap: !_needsScrolling(),
+                scrollDirection: Axis.horizontal,
+                clipBehavior: Clip.antiAlias,
+                itemBuilder: ((context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(top: 18.0),
+                    child: Transform.rotate(
+                      angle: 0,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          AnimatedContainer(
+                            margin: widget.margin,
+                            duration: widget.duration,
+                            decoration: BoxDecoration(
+                              borderRadius: widget.borderRadius,
+                              shape: widget.boxShape,
+                              color: index == widget.currentItem
+                                  ? widget.selectedColor
+                                  : widget.unselectedColor,
+                            ),
+                            width: index == widget.currentItem
+                                ? widget.size.width
+                                : widget.unselectedSize.width,
+                            height: index == widget.currentItem
+                                ? widget.size.height
+                                : widget.unselectedSize.height,
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          AnimatedContainer(
+                            margin: widget.margin,
+                            duration: widget.duration,
+                            decoration: BoxDecoration(
+                              borderRadius: widget.borderRadius,
+                              shape: widget.boxShape,
+                              color: index == widget.currentItem
+                                  ? widget.unselectedColor
+                                  : Colors.transparent,
+                            ),
+                            width: widget.unselectedSize.width,
+                            height: widget.unselectedSize.height,
+                          ),
+                        ],
                       ),
-                      const SizedBox(height: 10,),
-                      AnimatedContainer(
-                        margin: widget.margin,
-                        duration: widget.duration,
-                        decoration: BoxDecoration(
-                          borderRadius: widget.borderRadius,
-                          shape: widget.boxShape,
-                          color: index == widget.currentItem ? widget.unselectedColor : Colors.transparent,
-                        ),
-                        width:widget.unselectedSize.width,
-                        height:widget.unselectedSize.height,
-                      ),
-                    ],
-                  ),
-                ) :
-             
-                AnimatedContainer(
-                     
-                      margin:widget.margin,
-                      duration: widget.duration,
-                      decoration: BoxDecoration(
-                        borderRadius: widget.borderRadius,
-                        shape: widget.boxShape,
-                        color: index == widget.currentItem
-                            ? widget.selectedColor
-                            : widget.unselectedColor,
-                      ),
-                      width: index == widget.currentItem
-                          ? widget.size.width
-                          : widget.unselectedSize.width,
-                      height: index == widget.currentItem
-                          ? widget.size.height
-                          : widget.unselectedSize.height,
                     ),
-            );
-          },
-        ),
+                  );
+                }),
+              ),
       ),
     );
   }

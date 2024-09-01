@@ -48,46 +48,48 @@ class _CommentPageState extends State<CommentPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(preferredSize: const Size.fromHeight(80.0),
-       child: Container(
-        height: 250,
-        width: MediaQuery.of(context).size.width,
-        child: 
-          Row(children: [
-                              Expanded(
-                                child: Hero(
-                                  tag: widget.id,
-                                  child: Image.network(
-                                    widget.thumbnail,
-                                    fit: BoxFit.cover,
-                                    width: 100,
-                                    height: 100,
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                flex: 4,
-                                child: Align(
-                                  alignment: Alignment.bottomLeft,
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 8, vertical: 2),
-                                    child: Text(
-                                      widget.title.length > 80
-                                          ? widget.title.substring(0, 80) + '...'
-                                          : widget.title + '...',
-                                      textAlign: TextAlign.left,
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-       ),),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(80.0),
+        child: Container(
+          height: 250,
+          width: MediaQuery.of(context).size.width,
+          child: Row(
+            children: [
+              Expanded(
+                child: Hero(
+                  tag: widget.id,
+                  child: Image.network(
+                    widget.thumbnail,
+                    fit: BoxFit.cover,
+                    width: 100,
+                    height: 100,
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 4,
+                child: Align(
+                  alignment: Alignment.bottomLeft,
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                    child: Text(
+                      widget.title.length > 80
+                          ? widget.title.substring(0, 80) + '...'
+                          : widget.title + '...',
+                      textAlign: TextAlign.left,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
       backgroundColor: Colors.black,
       body: SafeArea(
         child: Consumer<CommentFeedProvider>(
@@ -124,8 +126,7 @@ class _CommentPageState extends State<CommentPage> {
                       return value.isLoading
                           ? const LoadPage()
                           : VideoCommentPage(
-                              comment: value.commentFeed[index],
-                              id: widget.id);
+                              comment: value.commentFeed[index], id: widget.id);
                     }),
                   ),
                   Positioned(
@@ -141,10 +142,12 @@ class _CommentPageState extends State<CommentPage> {
                           height: 51,
                           child: PageViewDotIndicator(
                             hasChildren: false,
+                            isCommentPage: true,
                             currentItem: selectedIndex,
                             count: widget.totalCommentCount,
                             alignment: Alignment.centerRight,
-                            unselectedColor: Colors.grey,
+                            unselectedColor:
+                                const Color.fromARGB(255, 123, 120, 120),
                             selectedColor:
                                 const Color.fromARGB(232, 255, 255, 255),
                             size: const Size(10, 10),

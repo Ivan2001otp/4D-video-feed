@@ -88,14 +88,7 @@ class _CustomVideoWidgetState extends State<CustomVideoWidget> {
             //pull up the comment videos
 
             _videoPlayerController.pause();
-            // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            //   content: Text(
-            //     'Display comments...',
-            //     style: TextStyle(color: Colors.white),
-            //   ),
-            //   duration: Duration(seconds: 2),
-            //   backgroundColor: Colors.orange,
-            // ));
+            
 
             if (widget.videoModel.childCountVideo > 0) {
               if (details.delta.dx < 0) {

@@ -98,7 +98,7 @@ class _HomePageState extends State<HomePage> {
                                 currentItem: notifiedValue,
                                 count: value.videoFeeds.length,
                                 alignment: Alignment.centerRight,
-                                unselectedColor: Colors.grey,
+                                unselectedColor:const Color.fromARGB(255, 123, 120, 120),
                                 selectedColor:
                                     const Color.fromARGB(232, 255, 255, 255),
                                 size: const Size(10, 10),
