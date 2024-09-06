@@ -9,4 +9,4 @@ This is a Flutter project that demonstrates 4D video feed .
 - For smooth scrolling from one video to another ,implemented PageBuilder .
 - For smooth transition from main video feed to its corresponding comment videos ,implemented custom PageRouter that is leveraged with Slide-Animation.
 - Seamless video feed scrolling .
-- Lazily loading of video-feed.
+
